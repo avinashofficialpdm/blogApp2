@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 inputArea">
+      <form class="text-center" [formGroup]="signupForm" (ngSubmit)="signUp()">
+        <h2 class="mt-4">User Sign Up</h2>
+        <mat-form-field appearance="fill" class="example-full-width mt-4 ">
+          <mat-label>Enter your Name</mat-label>
+          <input matInput placeholder="Eg: Avinash Santhosh" formControlName="name" required autocomplete="off">
+        </mat-form-field>
+        <p class="float-start text-danger" style="margin-top: -20;"
+          *ngIf="(signupFormControl.name.invalid && signupFormControl.name.touched)">Enter a valid Name</p>
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Enter your Username</mat-label>
+          <input matInput placeholder="Use only numbers and letters" formControlName="username" required
+            autocomplete="off">
+        </mat-form-field>
+        <p class="float-start text-danger" style="margin-top: -20;"
+          *ngIf="(signupFormControl.username.invalid && signupFormControl.username.touched)">Enter a valid Username</p>
+        <mat-form-field appearance="fill" class="example-full-width mb-3">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button [disabled]="signupForm.invalid" mat-raised-button color="accent">SignUp</button><br><br>
+        <a routerLink="/userLogin">Already Have an Account ? Login</a><br><br>
+        <a routerLink="">Back To Home</a>
+
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

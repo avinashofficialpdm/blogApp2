@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; 
+    font-family: 'Cinzel', serif;
+    background: rgb(194,205,246);
+    background: linear-gradient(90deg, 
+    rgba(194,205,246,1) 14%, rgba(218,251,198,1) 100%);}  
+
+

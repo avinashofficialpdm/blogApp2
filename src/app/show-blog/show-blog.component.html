@@ -1,0 +1,56 @@
+<app-header></app-header>
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col-md-10">
+
+            <!-- mat tab group -->
+            <mat-tab-group>
+                <mat-tab label="Blogs">
+
+                    <!-- blogs list and pagination -->
+                    <div *ngFor="let item of blogList | paginate: { itemsPerPage: 3, currentPage: p }"
+                        class="blogCard  m-4">
+                        <div class="row mx-3">
+                            <div class="col-md-1">
+                                <img src="{{item.image}}" class="my-4" width="80px" alt="">
+                            </div>
+                            <div class="col-md-11 ps-4">
+                                <div class="car py-1 " style="width: auto">
+                                    <div class="card-body">
+                                        <h5 class="card-title my-3">{{item.name}}</h5>
+                                        <h6 class="card-text my-3">
+                                            <fa-icon [icon]="faUser" class="m-2"></fa-icon> {{item.author}}
+                                        </h6>
+                                        <p>{{item.content|wordLimitter}} . . . . . . . . </p>
+                                        <h6>{{item.date|date}}</h6>
+                                        <button class="btn btn-outline-success float-end"
+                                            (click)="readMore(item.id)">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-5">
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    <!-- pagination controls -->
+
+                </mat-tab>
+                <mat-tab label="About Us">
+                    <div class="p-5 ">
+                        <mat-icon class="my-3 ">gamepad</mat-icon>
+                        <h4 class="aboutHead">Let'S BloG</h4>
+                        <p class="aboutUs">Let'S BloG is a web application that developed using Angular framework. You
+                            can register an
+                            account and loggin with your username and password. After than you can read the blogs and
+                            add comment to the blogs. And also you can add your own blogs </p>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+
+
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>

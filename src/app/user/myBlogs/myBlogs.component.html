@@ -1,0 +1,26 @@
+
+<div class="blog card m-4" *ngFor="let i of myBlogs">
+  <div class="row mx-3">
+    <div class="col-md-1">
+      <img src="{{i.image}}" class="my-4" width="80px">
+    </div>
+    <div class="col-md-11 ps-4">
+      <div class="car py-1 " style="width: auto">
+        <div class="card-body">
+          <h5 class="card-title my-3">{{i.name}}</h5>
+          <h6 class="card-text my-3">
+            <fa-icon class=""></fa-icon>{{i.author}}
+          </h6>
+          <p> {{i.content|wordLimitter}}. . . . . . . . </p>
+          <h6></h6>
+          <button class="btn btn-outline-danger float-end" (click)="deleteBlog(i.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="mb-5">
+</div>
+<div class="text-center" *ngIf="myBlogs.length<=0">
+  <h3 class="text-center my-5">You did't Added any blogs</h3>
+  <button class=" btn btn-warning" (click)="addBlog()">Click to add a new Blog</button>
+</div>

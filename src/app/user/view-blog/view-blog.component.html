@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-5 ">
+            <h1 class="d-inline">{{currentBlog.name}}</h1>
+            <img src="{{currentBlog.image}}" style="width: 8%; margin-left: 50%; " alt="">
+
+            <p><fa-icon [icon]="faUser" class="m-2"></fa-icon>{{currentBlog.author}}</p>
+            
+                <p class="mt-2" style="text-align: justify;">{{currentBlog.content}}</p>
+            
+            
+            <div class="comments">
+                <form [formGroup]="addCommentForm">
+                    <h2>Comments</h2>
+                    <textarea  id="" cols="50" rows="3"  [(ngModel)]="reviewText" class="form-control w-50"
+                         formControlName="review"></textarea><br>
+                    <button class="btn btn-success my-2" (click)="addComment()">Add comment</button><br><br>
+                </form>
+                <div class="usersComments">
+                    <div *ngFor="let comment of comments" class="card p-1 my-2">
+                        <p><i class="fa-solid fa-user-large"></i> {{comment.username}}</p>
+                        <p  style="font-size:larger;">{{comment.review}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
