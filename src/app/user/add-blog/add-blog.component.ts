@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/blog';
+import { User } from 'src/app/models/user';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AddBlogComponent implements OnInit {
 
   loggedUserId?: string|null
   imageUrl?: string
-  loggedUser:any
+  loggedUser?:User
   constructor(
     private serv: BlogAppService,
     private route: ActivatedRoute,
@@ -23,8 +24,8 @@ export class AddBlogComponent implements OnInit {
 
     // took the current user id from parametrs and retrived the full object of current user
     this.loggedUserId = this.route.snapshot.paramMap.get("id")
-    this._http.getUsers().subscribe((res: any) => {
-      this.loggedUser = res.find((element: any) => element.id == this.loggedUserId)
+    this._http.getUsers().subscribe((res: User[]) => {
+      this.loggedUser = res.find((element: User) => element.id == this.loggedUserId)
     })
 
   }
@@ -42,7 +43,10 @@ export class AddBlogComponent implements OnInit {
 
   // adding the additional details and image url of the blog and sending post request
   addBlog(formValues: Blog):void{
-    formValues.authorUname = this.loggedUser.username
+    
+    // loggedUser is possibly undefined.
+    if(this.loggedUser){
+      formValues.authorUname = this.loggedUser.username
     formValues.author = this.loggedUser.name
     formValues.date = new Date()
     formValues.comments = []
@@ -55,6 +59,7 @@ export class AddBlogComponent implements OnInit {
     setTimeout(() => {
       this._rout.navigateByUrl("")
     }, 1000);
+    }
   }
 
 }

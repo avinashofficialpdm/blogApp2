@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 import { filter, map,scan ,mergeMap,flatMap} from 'rxjs/operators';
+import { Blog } from 'src/app/models/blog';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 
 @Component({
@@ -11,10 +12,8 @@ import { BlogAppService } from 'src/app/Services/blog-app.service';
 })
 export class MyBlogsComponent implements OnInit {
 
-  curentUserId: any
-  currentUser: any
-  myBlogs: any[] = []
-  loggedUser:any
+  myBlogs: Blog[] = []
+
   constructor(private serv: BlogAppService,
     private _rout:Router,
     private _route:ActivatedRoute) { }
@@ -31,7 +30,7 @@ export class MyBlogsComponent implements OnInit {
 
   deleteBlog(i:number):void{
     if(confirm("Are you sure ? ")){
-      this.serv.deleteBlog(i).subscribe((res:any)=>{
+      this.serv.deleteBlog(i).subscribe((res:Blog)=>{
         location.replace("userLogged/myBlog")
       })
     }

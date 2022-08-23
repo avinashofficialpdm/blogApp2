@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CountService } from '../Services/count.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Blog } from '../models/blog';
+import { User } from '../models/user';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ShowBlogComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
     // for resolve the data
     this.blogList = this._route.snapshot.data['data']
 
@@ -44,11 +46,11 @@ export class ShowBlogComponent implements OnInit {
       this.loggedUser = localStorage.getItem("userLoggedIn")
     }
 
-    this._serv.getBlogs().subscribe((res:any) => {
+    this._serv.getBlogs().subscribe((res:Blog[]) => {
       let count = res.length
       this._countServ.updateCount(count)
     })
-    this._serv.getUsers().subscribe((res:any) => {
+    this._serv.getUsers().subscribe((res:User[]) => {
       let count = res.length
       this._countServ.updateUserCount(count)
     })

@@ -1,6 +1,8 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 import { BlogAppService } from '../Services/blog-app.service';
 
 @Component({
@@ -29,13 +31,12 @@ export class UserSignUpComponent implements OnInit {
   // signup function when click the signup button
   signUp() {
 
-    this.serv.getUsers().subscribe((res:any)=>{
+    this.serv.getUsers().subscribe((res:User[])=>{
       let allUsers=res
-      let isAlreadyUser =allUsers.findIndex((res:any)=>res.username==this.signupForm.value.username)
+      let isAlreadyUser =allUsers.findIndex((res:User)=>res.username==this.signupForm.value.username)
       if(isAlreadyUser==-1){
-        this.serv.signUpUser(this.signupForm.value).subscribe((res:any)=>{
+        this.serv.signUpUser(this.signupForm.value).subscribe(res=>{
           alert("success")
-          console.log(res);
         })
         setTimeout(() => {
           this._rout.navigateByUrl("userLogin")
