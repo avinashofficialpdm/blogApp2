@@ -50,6 +50,8 @@ export class ShowBlogComponent implements OnInit {
       let count = res.length
       this._countServ.updateCount(count)
     })
+
+
     this._serv.getUsers().subscribe((res:User[]) => {
       let count = res.length
       this._countServ.updateUserCount(count)
