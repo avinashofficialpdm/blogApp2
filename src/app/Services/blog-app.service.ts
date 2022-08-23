@@ -15,6 +15,11 @@ export class BlogAppService {
     return this._http.get(this.baseUrl+"blogs")
   }
 
+
+  getB():Observable<object> {
+    return this._http.get(this.baseUrl+"blogs")
+  }
+
   getUsers():Observable<object> {
     return this._http.get(this.baseUrl+"users")
   }

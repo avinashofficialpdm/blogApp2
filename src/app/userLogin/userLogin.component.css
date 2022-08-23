@@ -17,3 +17,7 @@ a:not([href]):not([class]){
   .example-full-width {
     width: 100%;
   }
+
+  small{
+    color: red;
+  }

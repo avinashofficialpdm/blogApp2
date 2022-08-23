@@ -9,6 +9,7 @@ import { BlogAppService } from './Services/blog-app.service';
 export class BlogsResolveGuard implements Resolve<Observable<object>> {
 
   constructor(private _serv: BlogAppService) { }
+ 
   resolve() {
     return this._serv.getBlogs()
   }

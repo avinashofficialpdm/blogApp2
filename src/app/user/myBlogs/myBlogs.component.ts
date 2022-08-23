@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
+import { filter, map,scan ,mergeMap,flatMap} from 'rxjs/operators';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 
 @Component({
@@ -18,33 +20,25 @@ export class MyBlogsComponent implements OnInit {
     private _route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.loggedUser = localStorage.getItem("userLoggedIn")
-    this.curentUserId= localStorage.getItem("userLoggedIn")
-    this.serv.getUsers().subscribe((user:any)=>{
-    this.currentUser= user.find((element:any)=>element.id==this.curentUserId)
-    
-      // 'myblogs' took from resolve guard
-     let Blogs= this._route.snapshot.data['myBlogs']
-     
-        Blogs.forEach((blog:any) => {
-          if(blog.authorUname==this.currentUser.username){
-            this.myBlogs.push(blog)
-          }
-        });
-    })
-    this.myBlogs.sort(function compare(obj1, obj2) { return <any>new Date(obj2.date) - <any>new Date(obj1.date) })
+
+    // current user's blogs coming from resolve 
+    this.myBlogs= this._route.snapshot.data['myBlogs']
+
+    // sorting them with their date
+    this.myBlogs.sort(function compare(obj1, obj2) { return <any>new Date(obj2.date) - <any>new Date(obj1.date)})
+
   }
 
   deleteBlog(i:number):void{
     if(confirm("Are you sure ? ")){
       this.serv.deleteBlog(i).subscribe((res:any)=>{
-        window.location.reload()
+        location.replace("userLogged/myBlog")
       })
     }
   }
 
   addBlog():void {
-    this._rout.navigate(['userLogged/addBlog', this.loggedUser])
+    this._rout.navigate(['userLogged/addBlog', localStorage.getItem("userLoggedIn")])
   }
 
 }

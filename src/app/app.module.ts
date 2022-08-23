@@ -12,7 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginComponent} from './userLogin/userLogin.component'
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserSignUpComponent } from './userSignUp/userSignUp.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from './material/material.module';
@@ -38,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTabsModule,
     MatIconModule,
     MaterialModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
