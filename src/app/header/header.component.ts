@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 import { CountService } from 'src/app/Services/count.service';
@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit {
   constructor(private _rout: Router,
      private countServ: CountService,
      private blogServ: BlogAppService) { }
+
+  @Input() user:string=""
 
   ngOnInit() {
     this.isLoggedIn()

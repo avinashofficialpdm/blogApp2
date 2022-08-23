@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { from } from 'rxjs';
-import { filter, map,scan ,mergeMap,flatMap} from 'rxjs/operators';
 import { Blog } from 'src/app/models/blog';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 

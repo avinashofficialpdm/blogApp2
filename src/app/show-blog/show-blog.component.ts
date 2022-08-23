@@ -56,7 +56,7 @@ export class ShowBlogComponent implements OnInit {
     })
   }
 
-  readMore(id:number):void {
+  readMore(id:number|undefined):void {
     if (localStorage.getItem("userLoggedIn")) {
       this._rout.navigate(['userLogged/viewBlog', id])
     } else {
