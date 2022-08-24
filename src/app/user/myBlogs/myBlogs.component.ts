@@ -20,7 +20,8 @@ export class MyBlogsComponent implements OnInit {
 
     // current user's blogs coming from resolve 
     this.myBlogs= this._route.snapshot.data['myBlogs']
-
+    console.log(this.myBlogs);
+    
     // sorting them with their date
     this.myBlogs.sort(function compare(obj1, obj2) { return <any>new Date(obj2.date) - <any>new Date(obj1.date)})
 

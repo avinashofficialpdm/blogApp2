@@ -12,7 +12,7 @@ export class BlogAppService {
 
   constructor(private _http: HttpClient) { }
 
-  handleError(error:any){
+  handleError(error:Error){
     alert(error.message)
     return throwError(error.message ||"server error")
   }
@@ -48,6 +48,8 @@ export class BlogAppService {
   }
 
   addComment(id:string|null,updatedData:Blog){
+    console.log(updatedData);
+    
     return this._http.put(this.baseUrl+"blogs/"+id,updatedData)
     .pipe(retry(1),catchError(this.handleError))
   }

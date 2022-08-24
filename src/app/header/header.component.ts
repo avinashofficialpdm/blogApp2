@@ -24,8 +24,8 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn()
 
     // subscribing the behaviourSubject value for showing the count
-    this.countServ.countSubject.subscribe(number => { this.countOfBlogs = number })
-    this.countServ.userCountSubject.subscribe(number => { this.countOfUsers = number })
+    this.countServ.countSub$.subscribe(number => { this.countOfBlogs = number })
+    this.countServ.userCountSub$.subscribe(number => { this.countOfUsers = number })
   }
 
 
