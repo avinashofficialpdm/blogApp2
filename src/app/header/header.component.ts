@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   logout():void {
     if (confirm("Are you sure you want to Logout")) {
-      localStorage.removeItem("userLoggedIn")
+      localStorage.clear()
       this.isLoggedIn()
       location.replace("")
     }

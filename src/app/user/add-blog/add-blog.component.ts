@@ -12,7 +12,7 @@ import { BlogAppService } from 'src/app/Services/blog-app.service';
 export class AddBlogComponent implements OnInit {
 
   loggedUserId?: string | null
-  imageUrl?: string
+  imageUrl?: string|null|ArrayBuffer
   loggedUser?: User
   constructor(
     private serv: BlogAppService,
@@ -31,12 +31,18 @@ export class AddBlogComponent implements OnInit {
   }
 
   // reads the url of image when choose any image in input:file using fileReader and saved the url to imageUrl variable
-  onselectFile(event: any): void {
-    if (event.target.files) {
+  onselectFile(event:Event): void {
+    console.log(typeof(event),event);
+    let ev=(event.target as HTMLInputElement)
+    
+    if (ev.files) {
       let reader = new FileReader()
-      reader.readAsDataURL(event.target.files[0])
-      reader.onload = (event: any) => {
-        this.imageUrl = event.target.result
+      reader.readAsDataURL(ev?.files[0])
+      reader.onload = (event:ProgressEvent<FileReader>) => {
+        if(event.target){
+          this.imageUrl = event.target.result
+
+        }
       }
     }
   }

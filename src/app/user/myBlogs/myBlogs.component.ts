@@ -23,7 +23,12 @@ export class MyBlogsComponent implements OnInit {
     console.log(this.myBlogs);
     
     // sorting them with their date
-    this.myBlogs.sort(function compare(obj1, obj2) { return <any>new Date(obj2.date) - <any>new Date(obj1.date)})
+    this.myBlogs.sort(function compare(obj1, obj2) {
+      // console.log(obj1.date);
+      // console.log(<any>new Date(obj2.date) -<any> new Date(obj1.date));
+      
+      
+       return new Date(obj2.date).getTime() -new Date(obj1.date).getTime()})
 
   }
 

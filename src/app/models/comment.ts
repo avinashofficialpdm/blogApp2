@@ -1,7 +1,7 @@
 
 
 export class comment {
-    review?: string
-    username?: string
-    id?: number
+    review?: string|null
+    username?: string|null
+    id?: string|null
 }

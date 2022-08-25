@@ -3,19 +3,19 @@
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4 inputArea">
-      <form class="text-center" #myForm="ngForm" (ngSubmit)="login(myForm)">
+      <form class="text-center" #myForm="ngForm" (ngSubmit)="login()">
         <h2 class="">User Login</h2>
         <div class="example-container">
 
           <mat-form-field appearance="fill" class="example-full-width my-2 mt-4 ">
             <mat-label>Enter your Username</mat-label>
-            <input matInput name="username" ngModel autocomplete="off" required #uname="ngModel">
+            <input matInput name="username" [(ngModel)]="loginCredentials.username" autocomplete="off" required #uname="ngModel">
           </mat-form-field>
           <small *ngIf="uname.invalid&&uname.touched">username field is required</small>
 
           <mat-form-field appearance="fill" class="example-full-width mb-3">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" name="password" ngModel required  autocomplete="off" #pass="ngModel">
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="loginCredentials.password" required  autocomplete="off" #pass="ngModel">
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

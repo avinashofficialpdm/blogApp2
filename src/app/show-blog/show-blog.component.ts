@@ -38,7 +38,7 @@ export class ShowBlogComponent implements OnInit {
     this.blogList = this._route.snapshot.data['data']
 
     // for sort the blogs using the dates uploaded
-    this.blogList.sort(function compare(obj1, obj2) { return <any|Date>new Date(obj2.date) - <any|Date>new Date(obj1.date) })
+    this.blogList.sort(function compare(obj1, obj2) { return new Date(obj2.date).getTime() - new Date(obj1.date).getTime() })
     
 
     if (localStorage.getItem('userLoggedIn')) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faL, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Blog } from 'src/app/models/blog';
 import { comment } from 'src/app/models/comment';
 import { User } from 'src/app/models/user';
@@ -24,7 +24,7 @@ export class ViewBlogComponent implements OnInit {
 
   allBlogs: Blog[]=[]
 
-  constructor(private route: ActivatedRoute, private serv: BlogAppService) { }
+  constructor(private route: ActivatedRoute, private serv: BlogAppService,private _rout:Router) { }
 
   addCommentForm = new FormGroup({
     review: new FormControl(''),
@@ -34,54 +34,46 @@ export class ViewBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentBlogId = JSON.parse(this.route.snapshot.paramMap.get("id")||"")
-
-
     this.allBlogs = this.route.snapshot.data['allBlogs']
-
     this.blogs()
     this.serv.getUsers().subscribe((res: User[]) => {
       this.currentUser = res.find((user: User) => user.id == localStorage.getItem("userLoggedIn"))
     })
-
   }
 
-
-
   blogs() {
-
     if (this.allBlogs) {
       this.currentBlog = this.allBlogs.find((element: Blog) => element.id == this.currentBlogId)
       if (this.currentBlog) {
         this.comments = this.currentBlog.comments
       }
     }
-
-    // this.serv.getBlogs().subscribe((res: Blog[]) => {
-    //   this.currentBlog = res.find((element: Blog|any) => element.id == this.currentBlogId)
-    //   this.comments = this.currentBlog.comments
-    // })
   }
 
-
-
   addComment(): void {
-    this.serv.getBlogs().subscribe((res: any) => {
+    this.serv.getBlogs().subscribe((res: Blog[]) => {
 
       // for adding a unique id for each comments
       let newId: string = ""
         let clickedBlog = res.find((blog: Blog) => blog.name == this.currentBlog?.name)
         this.addCommentForm.value.username = this.currentUser?.username
-        if (clickedBlog.comments.length > 0) {
-          newId = clickedBlog.comments[clickedBlog.comments.length - 1].id + 1
+        if(clickedBlog){
+          let length=clickedBlog.comments.length
+          if (length > 0) {
+
+           newId= <string>clickedBlog?.comments[length - 1]?.id + 1
+          }
         }
+        
         this.addCommentForm.value.id = newId
         
         // adding the comment and sending the put request 
-        clickedBlog.comments.push(this.addCommentForm.value)
-        this.serv.addComment(this.currentBlogId, clickedBlog).subscribe((res: any) => {
+        clickedBlog?.comments.push(this.addCommentForm.value)
+        this.serv.addComment(this.currentBlogId, clickedBlog).subscribe(() => {
           this.reviewText = "";
           alert("Success")
-          location.replace('userLogged/viewBlog/'+this.currentBlogId)
+          //this._rout.navigate(['userLogged/viewBlog/'+this.currentBlogId],{skipLocationChange:false})
+           location.replace('userLogged/viewBlog/'+this.currentBlogId)
           this.blogs()
         })
     })

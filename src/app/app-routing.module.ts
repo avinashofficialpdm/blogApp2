@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogsResolveGuard } from './blogs-resolve.guard';
+import { NotLoggedInGuard } from './not-logged-in.guard';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
 import { AddBlogComponent } from './user/add-blog/add-blog.component';
 import { LoginGuard } from './user/login.guard';
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'userLogin',
-    component: UserLoginComponent
+    component: UserLoginComponent,
+    canActivate:[NotLoggedInGuard]
   },
   {
     path: 'userLogged',
