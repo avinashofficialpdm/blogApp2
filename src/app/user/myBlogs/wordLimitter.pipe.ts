@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class WordLimitterPipe implements PipeTransform {
 
-  transform(value: string, args?: any): any {
+  transform(value: string) {
     let val=value.split(' ')
     let newVal = val.splice(0,200).join(' ')
     return newVal

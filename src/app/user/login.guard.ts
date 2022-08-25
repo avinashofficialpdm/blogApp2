@@ -6,7 +6,7 @@ import { CanActivate, Router} from '@angular/router';
 })
 export class LoginGuard implements CanActivate {
   constructor(private _rout: Router) { }
-  canActivate(): any {
+  canActivate(): boolean {
     if (localStorage.getItem("userLoggedIn")) {
       return true
     } else {

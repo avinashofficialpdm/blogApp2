@@ -6,7 +6,7 @@ export class Blog {
     author?:string
     image?:string
     authorUname?:string
-    date:Date|any
+    date:Date=new Date()
     comments:comment[]=[]
     content:string=""
 }

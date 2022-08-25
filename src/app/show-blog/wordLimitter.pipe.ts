@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'wordLimitter'
+  // ,pure:false
 })
 export class WordLimitterPipe implements PipeTransform {
 

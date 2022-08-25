@@ -47,7 +47,7 @@ export class BlogAppService {
     })
   }
 
-  addComment(id:string|null,updatedData:Blog){
+  addComment(id:number|null,updatedData:Blog){
     console.log(updatedData);
     
     return this._http.put(this.baseUrl+"blogs/"+id,updatedData)

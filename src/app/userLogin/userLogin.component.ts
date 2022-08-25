@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogAppService } from '../Services/blog-app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,7 +19,7 @@ export class UserLoginComponent {
     private _rout: Router,
     private _snackBar: MatSnackBar) { }
 
-  login(form: any) {
+  login(form:any) {
     this.serv.getUsers().subscribe((res: User[]) => {
       if (res.find((element: User) => element.username == form['value'].username)) {
         let currentUser = res.find((element: User) => element.username == form['value'].username)

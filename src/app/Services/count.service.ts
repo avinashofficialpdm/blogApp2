@@ -8,11 +8,11 @@ export class CountService {
 
   //creating a behavior subject with initial value 0 
   public countSubject = new BehaviorSubject<number>(0)
-  public countSub$: Observable<any> = this.countSubject;
+  public countSub$: Observable<number> = this.countSubject;
   
   //creating a behavior subject with initial value 0 
   public userCountSubject = new BehaviorSubject<number>(0)
-  public userCountSub$: Observable<any> = this.userCountSubject;
+  public userCountSub$: Observable<number> = this.userCountSubject;
   // update function for blogsCount
   updateCount(data: number):void {
     this.countSubject.next(data)

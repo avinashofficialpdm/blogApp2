@@ -14,7 +14,7 @@ import { BlogAppService } from 'src/app/Services/blog-app.service';
 })
 export class ViewBlogComponent implements OnInit {
 
-  currentBlogId: string | null = ""
+  currentBlogId: number | null=0
   currentBlog: Blog|undefined
   comments: comment[] = []
   currentUser: User|undefined
@@ -33,7 +33,7 @@ export class ViewBlogComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.currentBlogId = this.route.snapshot.paramMap.get("id")
+    this.currentBlogId = JSON.parse(this.route.snapshot.paramMap.get("id")||"")
 
 
     this.allBlogs = this.route.snapshot.data['allBlogs']
@@ -50,7 +50,7 @@ export class ViewBlogComponent implements OnInit {
   blogs() {
 
     if (this.allBlogs) {
-      this.currentBlog = this.allBlogs.find((element: Blog | any) => element.id == this.currentBlogId)
+      this.currentBlog = this.allBlogs.find((element: Blog) => element.id == this.currentBlogId)
       if (this.currentBlog) {
         this.comments = this.currentBlog.comments
       }
@@ -81,7 +81,7 @@ export class ViewBlogComponent implements OnInit {
         this.serv.addComment(this.currentBlogId, clickedBlog).subscribe((res: any) => {
           this.reviewText = "";
           alert("Success")
-          location.replace('userLogged/viewBlog/' + localStorage.getItem("userLoggedIn"))
+          location.replace('userLogged/viewBlog/'+this.currentBlogId)
           this.blogs()
         })
     })

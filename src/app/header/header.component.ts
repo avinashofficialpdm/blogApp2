@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 import { CountService } from 'src/app/Services/count.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-header',
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
   // sending the currently logged user ID
   deleteAccount() :void{
     if (confirm("Are you sure you want to delete your Account")) {
-      this.blogServ.deleteUser(this.loggedUserId).subscribe((res: any) => {
+      this.blogServ.deleteUser(this.loggedUserId).subscribe(() => {
         alert("Deleted Successfully")
         localStorage.clear()
         this.isLoggedIn()

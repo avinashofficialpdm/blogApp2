@@ -10,7 +10,6 @@ import { BlogAppService } from '../Services/blog-app.service';
 })
 export class AllBlogsResolveGuard implements Resolve<Observable<object>> {
   curentUserId?: string | null
-  currentUser: Blog | any
   constructor(private _serv: BlogAppService) { }
 
   // used rxjs operators to filter the blogs written by the current user
