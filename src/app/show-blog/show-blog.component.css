@@ -1,7 +1,6 @@
 .blogCard{
     height: auto;
 }
-
 .aboutHead{
     text-decoration: underline;
 }
@@ -10,7 +9,6 @@
     font-size: large;
     font-weight: lighter;
 }
-
 mat-tab-group{
   font-family: 'Cardo', serif;
 }

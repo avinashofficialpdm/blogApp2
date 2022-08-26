@@ -14,7 +14,7 @@ export class BlogAppService {
 
   handleError(error:Error){
     alert(error.message)
-    return throwError(error.message ||"server error")
+    return throwError(error.message)
   }
 
   getBlogs():Observable<Blog[]> {
@@ -22,13 +22,10 @@ export class BlogAppService {
     .pipe(retry(1),catchError(this.handleError))
   }
 
-  
-
   getUsers():Observable<User[]> {
     return this._http.get<User[]>(this.baseUrl+"users")
     .pipe(retry(1),catchError(this.handleError))
   }
-
   
   signUpUser(user: object) {
     return this._http.post(this.baseUrl+"users", user)

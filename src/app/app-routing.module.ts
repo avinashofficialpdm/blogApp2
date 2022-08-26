@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlogsResolveGuard } from './blogs-resolve.guard';
 import { NotLoggedInGuard } from './not-logged-in.guard';
 import { ShowBlogComponent } from './show-blog/show-blog.component';
-import { AddBlogComponent } from './user/add-blog/add-blog.component';
-import { LoginGuard } from './user/login.guard';
 import { UserLoginComponent } from './userLogin/userLogin.component';
 import { UserSignUpComponent } from './userSignUp/userSignUp.component';
 
@@ -30,7 +28,6 @@ const routes: Routes = [
     path: "userSignUp",
     component: UserSignUpComponent
   }
-
 ];
 
 @NgModule({

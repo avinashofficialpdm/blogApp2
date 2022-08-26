@@ -33,7 +33,6 @@ export class ShowBlogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
     // for resolve the data
     this.blogList = this._route.snapshot.data['data']
 

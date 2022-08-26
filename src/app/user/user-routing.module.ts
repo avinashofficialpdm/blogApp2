@@ -12,7 +12,6 @@ const routes: Routes = [
     path:'addBlog/:id',
     component:AddBlogComponent,
     canActivate:[LoginGuard],
-
   },
   {
     path:'viewBlog/:id',

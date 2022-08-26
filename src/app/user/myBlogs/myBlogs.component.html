@@ -1,3 +1,10 @@
+<div>
+  <h1 class="m-3 text-center my-4 ">Your Blogs</h1>
+  
+  <!-- ngClass applied here -->
+  <button class="btn btn-outline-primary" [ngClass]="myBlogs.length >0 ? 'btnTop' : 'btnCenter'" routerLink="">Back to
+    Home</button>
+</div>
 
 <div class="blog card m-4" *ngFor="let i of myBlogs">
   <div class="row mx-3">

@@ -22,18 +22,11 @@ export class MyBlogsComponent implements OnInit {
     this.myBlogs= this._route.snapshot.data['myBlogs']
     
     // sorting them with their date
-    this.myBlogs.sort(function compare(obj1, obj2) {
-      // console.log(obj1.date);
-      // console.log(<any>new Date(obj2.date) -<any> new Date(obj1.date));
-      
-      
-       return new Date(obj2.date).getTime() -new Date(obj1.date).getTime()})
-
-  }
+    this.myBlogs.sort(function compare(obj1, obj2) { return new Date(obj2.date).getTime() -new Date(obj1.date).getTime() })}
 
   deleteBlog(i:number):void{
     if(confirm("Are you sure ? ")){
-      this.serv.deleteBlog(i).subscribe((res:Blog)=>{
+      this.serv.deleteBlog(i).subscribe(()=>{
         location.replace("userLogged/myBlog")
       })
     }
