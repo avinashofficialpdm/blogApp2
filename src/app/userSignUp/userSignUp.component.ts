@@ -1,4 +1,3 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -35,7 +34,7 @@ export class UserSignUpComponent implements OnInit {
       let allUsers=res
       let isAlreadyUser =allUsers.findIndex((res:User)=>res.username==this.signupForm.value.username)
       if(isAlreadyUser==-1){
-        this.serv.signUpUser(this.signupForm.value).subscribe(res=>{
+        this.serv.signUpUser(this.signupForm.value).subscribe(()=>{
           alert("success")
         })
         setTimeout(() => {

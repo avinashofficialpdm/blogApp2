@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { BlogAppService } from 'src/app/Services/blog-app.service';
 import { CountService } from 'src/app/Services/count.service';
-import { User } from '../models/user';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +11,13 @@ export class HeaderComponent implements OnInit {
 
   userlogged: boolean = false
   loggedUserId: string|null=""
-  nameOfloggedUser?: string|null
-  countOfBlogs?: number
+  nameOfloggedUser?: string|null 
+  countOfBlogs?: number 
   countOfUsers?: number
 
-  constructor(private _rout: Router,
-     private countServ: CountService,
-     private blogServ: BlogAppService) { }
+  constructor(
+    private countServ: CountService,
+    private blogServ: BlogAppService) { }
 
   ngOnInit() {
     this.isLoggedIn()
@@ -31,6 +29,8 @@ export class HeaderComponent implements OnInit {
 
 
   isLoggedIn():void{
+
+    // object is posiibly undefined 
     if (localStorage.getItem('userLoggedIn')) {
       this.userlogged = true
       this.nameOfloggedUser = localStorage.getItem("loggedUser")
@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit {
   logout():void {
     if (confirm("Are you sure you want to Logout")) {
       localStorage.clear()
-      this.isLoggedIn()
       location.replace("")
     }
   }
@@ -53,16 +52,8 @@ export class HeaderComponent implements OnInit {
       this.blogServ.deleteUser(this.loggedUserId).subscribe(() => {
         alert("Deleted Successfully")
         localStorage.clear()
-        this.isLoggedIn()
         location.replace("")
       })
     }
-  }
-
-
-  //calls this function on add blog navigation button clicks and
-  // send the currently logged userID as a parameter 
-  addBlog():void {
-    this._rout.navigate(['userLogged/addBlog', this.loggedUserId])
   }
 }

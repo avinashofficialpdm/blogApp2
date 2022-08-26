@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 
-import { map, Observable } from 'rxjs';
-import { Blog } from '../models/blog';
+import { Observable } from 'rxjs';
 import { BlogAppService } from '../Services/blog-app.service';
 
 @Injectable({

@@ -32,7 +32,6 @@ export class AddBlogComponent implements OnInit {
 
   // reads the url of image when choose any image in input:file using fileReader and saved the url to imageUrl variable
   onselectFile(event:Event): void {
-    console.log(typeof(event),event);
     let ev=(event.target as HTMLInputElement)
     
     if (ev.files) {
@@ -61,7 +60,9 @@ export class AddBlogComponent implements OnInit {
       } else {
         formValues.image = this.imageUrl
       }
-      this.serv.addBlog(formValues)
+      this.serv.addBlog(formValues).subscribe(()=>{
+        alert("Success")
+      })
       setTimeout(() => {
         this._rout.navigateByUrl("")
       }, 1000);

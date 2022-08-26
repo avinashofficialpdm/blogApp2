@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faL, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Blog } from 'src/app/models/blog';
 import { comment } from 'src/app/models/comment';
 import { User } from 'src/app/models/user';
@@ -19,7 +19,7 @@ export class ViewBlogComponent implements OnInit {
   comments: comment[] = []
   currentUser: User|undefined
   faUser = faUser
-  reviewText: string = ""
+  // reviewText: string = ""
 
 
   allBlogs: Blog[]=[]
@@ -69,10 +69,12 @@ export class ViewBlogComponent implements OnInit {
         
         // adding the comment and sending the put request 
         clickedBlog?.comments.push(this.addCommentForm.value)
-        this.serv.addComment(this.currentBlogId, clickedBlog).subscribe(() => {
-          this.reviewText = "";
+        this.serv.addComment(this.currentBlogId, clickedBlog).subscribe(res => {
+          console.log(res);
+          
+          this.addCommentForm.value.review=''
+          // this.reviewText = "";
           alert("Success")
-          //this._rout.navigate(['userLogged/viewBlog/'+this.currentBlogId],{skipLocationChange:false})
            location.replace('userLogged/viewBlog/'+this.currentBlogId)
           this.blogs()
         })

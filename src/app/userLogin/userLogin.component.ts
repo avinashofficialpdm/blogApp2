@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogAppService } from '../Services/blog-app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,8 +22,6 @@ export class UserLoginComponent {
     private _snackBar: MatSnackBar) { }
 
   login() {
-    console.log(this.loginCredentials);
-    
     this.serv.getUsers().subscribe((res: User[]) => {
       if (res.find((element: User) => element.username == this.loginCredentials.username)) {
         let currentUser = res.find((element: User) => element.username == this.loginCredentials.username)

@@ -35,21 +35,12 @@ export class BlogAppService {
     .pipe(retry(1),catchError(this.handleError))
   }
 
-  addBlog(blog: Blog):void {
-    this._http.post(this.baseUrl+"blogs", blog)
+  addBlog(blog: Blog) {
+    return this._http.post(this.baseUrl+"blogs", blog)
     .pipe(retry(1),catchError(this.handleError))
-    .subscribe({
-      next() { alert("success");},
-      error() {
-        console.log(Error);
-        alert("Failed")
-      }
-    })
   }
 
-  addComment(id:number|null,updatedData:Blog|undefined){
-    console.log(updatedData);
-    
+  addComment(id:number|null,updatedData:Blog|undefined){   
     return this._http.put(this.baseUrl+"blogs/"+id,updatedData)
     .pipe(retry(1),catchError(this.handleError))
   }
