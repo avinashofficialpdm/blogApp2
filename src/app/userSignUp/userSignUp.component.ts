@@ -29,7 +29,6 @@ export class UserSignUpComponent implements OnInit {
 
   // signup function when click the signup button
   signUp() {
-
     this.serv.getUsers().subscribe((res:User[])=>{
       let allUsers=res
       let isAlreadyUser =allUsers.findIndex((res:User)=>res.username==this.signupForm.value.username)
@@ -43,10 +42,7 @@ export class UserSignUpComponent implements OnInit {
       }else{
         alert("please choose anthor username")
       }
-      
     })
-
-    
   }
 
   ngOnInit() { }

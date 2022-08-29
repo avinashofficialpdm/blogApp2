@@ -14,7 +14,7 @@ export class BlogAppService {
 
   handleError(error:Error){
     alert(error.message)
-    return throwError(error.message)
+    return throwError(()=>error)
   }
 
   getBlogs():Observable<Blog[]> {

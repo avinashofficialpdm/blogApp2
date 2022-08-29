@@ -27,20 +27,17 @@ export class AddBlogComponent implements OnInit {
     this._http.getUsers().subscribe((res: User[]) => {
       this.loggedUser = res.find((element: User) => element.id == this.loggedUserId)
     })
-
   }
 
   // reads the url of image when choose any image in input:file using fileReader and saved the url to imageUrl variable
   onselectFile(event:Event): void {
     let ev=(event.target as HTMLInputElement)
-    
     if (ev.files) {
       let reader = new FileReader()
       reader.readAsDataURL(ev?.files[0])
       reader.onload = (event:ProgressEvent<FileReader>) => {
         if(event.target){
           this.imageUrl = event.target.result
-
         }
       }
     }
@@ -68,5 +65,4 @@ export class AddBlogComponent implements OnInit {
       }, 1000);
     }
   }
-
 }

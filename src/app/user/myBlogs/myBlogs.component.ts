@@ -27,7 +27,10 @@ export class MyBlogsComponent implements OnInit {
   deleteBlog(i:number):void{
     if(confirm("Are you sure ? ")){
       this.serv.deleteBlog(i).subscribe(()=>{
-        location.replace("userLogged/myBlog")
+        let currentUrl = this._rout.url;
+          this._rout.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this._rout.navigate([currentUrl]);
+          });
       })
     }
   }

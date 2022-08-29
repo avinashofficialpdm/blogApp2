@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
       this.blogServ.deleteUser(this.loggedUserId).subscribe(() => {
         alert("Deleted Successfully")
         localStorage.clear()
-        location.replace("")
+        location.replace("") 
       })
     }
   }
